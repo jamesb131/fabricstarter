@@ -1,0 +1,21 @@
+# Terraform state
+*.tfstate
+*.tfstate.backup
+
+# Terraform config override files
+*.tfvars
+*.tfvars.json
+
+# Local .terraform working directory
+.terraform/
+
+# Terraform plan output
+*.tfplan
+
+# Crash log
+crash.log
+
+# Ignore sensitive files or temp files
+*.log
+*.bak
+*.tmp
