@@ -68,7 +68,7 @@ resource "azuread_application" "powerbi" {
   required_resource_access {
     resource_app_id = "00000009-0000-0000-c000-000000000000"
     resource_access {
-      id   = "19dbc75e-c2e2-444c-a770-ec69d8559fc7"
+      id   = "654b31ae-d941-4e22-8798-7add8fdf049f"
       type = "Role"
     }
   }
