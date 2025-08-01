@@ -22,6 +22,10 @@ provider "azurerm" {
 
 data "azurerm_client_config" "current" {}
 
+data "azuread_user" "admin" {
+  user_principal_name = var.admin_email
+}
+
 #######################
 # RESOURCE GROUP
 #######################
@@ -54,6 +58,12 @@ resource "azurerm_key_vault" "kv" {
     secret_permissions = ["Get", "List", "Set", "Delete"]
   }
 
+    access_policy {
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azuread_user.admin.object_id
+    secret_permissions = ["Get", "List"]
+  }
+
 }
 
 #######################
@@ -68,7 +78,7 @@ resource "azuread_application" "powerbi" {
   required_resource_access {
     resource_app_id = "00000009-0000-0000-c000-000000000000"
     resource_access {
-      id   = "19dbc75e-c2e2-444c-a770-ec69d8559fc7"
+      id   = "654b31ae-d941-4e22-8798-7add8fdf049f"
       type = "Role"
     }
   }
@@ -87,7 +97,7 @@ resource "azuread_application" "graph" {
   required_resource_access {
     resource_app_id = "00000003-0000-0000-c000-000000000000"
     resource_access {
-      id   = "b0afded3-3588-46d8-8b3d-9842eff778da"
+      id   = "97235f07-e226-4f63-ace3-39588e11d3a1"
       type = "Role"
     }
   }
@@ -106,7 +116,7 @@ resource "azuread_application" "graph_mail" {
   required_resource_access {
     resource_app_id = "00000003-0000-0000-c000-000000000000"
     resource_access {
-      id   = "741f803b-c850-494e-b5df-cde7c675a1ca"
+      id   = "6be147d2-ea4f-4b5a-a3fa-3eab6f3c140a"
       type = "Role"
     }
   }
