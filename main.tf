@@ -22,6 +22,10 @@ provider "azurerm" {
 
 data "azurerm_client_config" "current" {}
 
+data "azuread_user" "admin" {
+  user_principal_name = var.admin_email
+}
+
 #######################
 # RESOURCE GROUP
 #######################
@@ -52,6 +56,12 @@ resource "azurerm_key_vault" "kv" {
     object_id = data.azurerm_client_config.current.object_id
 
     secret_permissions = ["Get", "List", "Set", "Delete"]
+  }
+
+    access_policy {
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azuread_user.admin.object_id
+    secret_permissions = ["Get", "List"]
   }
 
 }
