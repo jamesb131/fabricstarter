@@ -1,0 +1,8 @@
+environment: ${ENV_NAME}
+workspace:
+  id: ${FABRIC_WORKSPACE_ID}
+items:
+  defaultLakehouseName: my_lakehouse_${ENV_NAME}
+  defaultWarehouseName: my_warehouse_${ENV_NAME}
+connections:
+  sqlConnectionString: ${SQL_CONN_STR}
